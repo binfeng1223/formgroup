@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Accordion Actions - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.js"></script>
+	<script type="text/javascript" src="jquery.formgroup.js"></script>
+</head>
+<body>
+		    <div style="margin:20px 0 10px 0;">
+				<a href="javascript:void(0)" class="easyui-linkbutton" onclick="addFormgroup()">Add</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" onclick="loadData()">loadData</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" onclick="getData()">getData</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" onclick="loadComponentData()">loadComponentData</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" onclick="removeFormgroup()">Remove</a>
+			</div>
+
+	<table id="formgroup"></table>
+</body>
+<script>
+	$("#formgroup").formgroup({
+		components:[
+			{
+				title:"输入框",
+				element:"<input  value='11' class='form-control'/>",
+				name:'input1',
+				width:'40%'
+			},
+			{
+				title:"下拉框",
+				element:"<select class='form-control'/>",
+				name:'select1',
+				
+				width:'50%'
+
+			},
+			{
+				title:"操作",
+				element:"<span class='glyphicon glyphicon-remove'></span>",
+				click:function(){
+					$(this).parent().parent().remove();
+				},
+				width:'10%'
+			}
+		],
+		data:[
+
+			]
+
+	});
+
+	function addFormgroup(){
+		$("#formgroup").formgroup("add");
+	}
+
+	function removeFormgroup(){
+		var idx = $("#formgroup").formgroup("size")-1;
+		$("#formgroup").formgroup("remove", idx);
+	}
+	
+	function getData(){
+		var data = $("#formgroup").formgroup("getData");
+		console.log(data);
+
+	}
+
+	function loadData(){
+		
+		$("#formgroup").formgroup("loadData", [
+			{input1:"134132", select1:"11"},
+			{input1:"134132", select1:"11"},
+			{input1:"134132", select1:"11"},
+			{input1:"134132", select1:"11"}
+		]);
+
+	}
+
+
+	function loadComponentData(){
+		var data = $("#formgroup").formgroup("loadComponentData", "select1", [
+					{value:"11",text:"2341"},
+					{value:"1321",text:"23412"},
+					{value:"121",text:"2fasfas"},
+					{value:"1341",text:"fasdfa2"},
+					{value:"142421",text:"dsfasd2"}
+				]);
+
+	}
+	
+</script>
+</html>
